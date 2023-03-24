@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import QuestionBody from '../QuestionBody/index';
 import Option from '../Option/index';
 import './style.css';
 
-const Question = (props) => {
+const Question = ({text}) => {
+  const [answer, setAnswer] = useState ("symbolQuestion")
+  const handleClick = (type)=>{
+    setAnswer(type)
+  }
   return (
     <div className="question">
       <QuestionBody 
-        iconType="symbolQuestion" 
-        text={props.text}
+        iconType= {answer}
+        text={text}
       />
       <div className="question__options">
-        <Option type="smileyStrongYes" text="Souhlasím"/>
-        <Option type="smileyYes" text="Spíše souhlasím"/>
-        <Option type="smileyNeutral" text="Nevím"/>
-        <Option type="smileyNo" text="Spíše nesouhlasím"/>
-        <Option type="smileyStrongNo" text="Nesouhlasím"/>
+        <Option onSelected={handleClick} type="smileyStrongYes" text="Souhlasím"/>
+        <Option onSelected={handleClick} type="smileyYes" text="Spíše souhlasím"/>
+        <Option onSelected={handleClick} type="smileyNeutral" text="Nevím"/>
+        <Option onSelected={handleClick} type="smileyNo" text="Spíše nesouhlasím"/>
+        <Option onSelected={handleClick} type="smileyStrongNo" text="Nesouhlasím"/>
       </div>
     </div>
   );
